@@ -1,0 +1,29 @@
+package eng_procedures.parameters_init;
+
+import eng_parameters.ParametersFileReader;
+import eng_parameters.parameters_groups.ConsoleParametersParameters;
+
+public class ConsoleParametersParametersInit {
+	private static final String CONSOLE_PARAMETERS_PARAMETERS_FILE_NAME = "consoleParametersParameters.txt";
+
+	private ConsoleParametersParameters consoleParametersParameters;
+	private ParametersInit parametersInit = new ParametersInit();
+	private ParametersFileReader parametersFileReader;
+	
+	public ConsoleParametersParametersInit() {
+		this.parametersFileReader = new ParametersFileReader(CONSOLE_PARAMETERS_PARAMETERS_FILE_NAME);
+	}
+	
+	public ConsoleParametersParametersInit(ParametersFileReader parametersFileReader) {
+		this.parametersFileReader = parametersFileReader;
+	}
+	
+	/**
+	 * @return GraphicParameters parameters - object of {@link GraphicsParameters}.
+	 */
+	public ConsoleParametersParameters initParameters() throws Exception {
+		consoleParametersParameters = ConsoleParametersParameters.createInstance();
+
+		return (ConsoleParametersParameters) parametersInit.getParametersObject(parametersFileReader, consoleParametersParameters);
+	}
+}
