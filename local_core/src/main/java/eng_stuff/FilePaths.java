@@ -1,7 +1,7 @@
 package eng_stuff;
 
 public final class FilePaths {
-	private final static String PARAMETERS_PATH = "parameters/"; 
+	private final static String PARAMETERS_PATH = //"parameters/"; 
 	private final static String OBJECTS_PATH = "objects/";
 	private final static String SCENES_PATH = "scenes/";
 
