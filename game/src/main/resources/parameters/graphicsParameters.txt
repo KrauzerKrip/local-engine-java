@@ -1,0 +1,2 @@
+BOOLEAN CONFIRMATION=FALSE preloadTechSprites=false //Preload sprites to display technical objects. 
+FLOAT CONFIRMATION=FALSE handlingDistance=100.0 //Distance of handling.

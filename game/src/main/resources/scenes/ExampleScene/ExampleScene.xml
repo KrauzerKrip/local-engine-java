@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entities>
+	<static_entities>
+		<model id="grassblock" object="Grassblock">
+			<default_pos default_pos_x="0" default_pos_y="0" default_pos_z="0">
+			</default_pos>
+			<default_rot default_rot_x="0" default_rot_y="0" default_rot_z="0">
+			</default_rot>
+			<end_entity></end_entity>
+		</model>
+	</static_entities>
+	<dynamic_entities>
+		<model id="example_object_1" object="Example" script="example_script" is_eternal_script="false">
+			<default_pos default_pos_x="0" default_pos_y="0" default_pos_z="0">
+			</default_pos>
+			<default_rot default_rot_x="0" default_rot_y="0" default_rot_z="0">
+			</default_rot>
+			<end_entity></end_entity>
+		</model>
+		<trigger id="trigger_1" script="example_script" is_eternal_script="false">
+			<collider collider_height="1" collider_width="1"> 
+			</collider><default_pos default_pos_x="1" default_pos_y="0" default_pos_z="0">
+			</default_pos>
+			<default_rot default_rot_x="0" default_rot_y="0" default_rot_z="0">
+			</default_rot>
+			<end_entity></end_entity>
+			</trigger>
+		<entity id="invisible_entity_1" script="example_script" is_eternal_script="true">
+			<collider collider_height="1" collider_width="1"> 
+			</collider><default_pos default_pos_x="0" default_pos_y="0" default_pos_z="0">
+			</default_pos>
+			<default_rot default_rot_x="0" default_rot_y="0" default_rot_z="0">
+			</default_rot>
+			<end_entity></end_entity>
+		</entity>
+	</dynamic_entities>
+</entities>

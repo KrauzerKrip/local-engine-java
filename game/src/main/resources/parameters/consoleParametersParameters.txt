@@ -1,0 +1,1 @@
+BOOLEAN CONFIRMATION=TRUE canEngineChangeParameters=false //Does the engine have right to change parameters in some cases (e.g if parameter cause some problem, engine can change it).

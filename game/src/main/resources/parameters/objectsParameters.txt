@@ -1,0 +1,2 @@
+BOOLEAN CONFIRMATION=FALSE triggersDisplay=false //Display triggers.
+BOOLEAN CONFIRMATION=FALSE defaultEntitiesDisplay=false //Display default entities.

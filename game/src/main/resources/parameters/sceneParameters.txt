@@ -1,0 +1,1 @@
+BOOLEAN CONFIRMATION=TRUE objectDynamicHandling=true //All scene objects will be always handled or will be used dynamic calculation objects for handling by distance. Otherwise will be used CalcultionObjectsForHandlingDirect (if is false) or CalculationObjectsForHandlingByDistance (if is true) class.
