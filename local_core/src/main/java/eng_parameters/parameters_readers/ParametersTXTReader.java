@@ -7,7 +7,7 @@ import java.util.List;
 
 import eng_file_io.FileReadingByLines;
 import eng_parameters.IParametersReading;
-import eng_stuff.FilePaths;
+import game.Resource;
 
 public class ParametersTXTReader implements IParametersReading {
 
@@ -21,7 +21,7 @@ public class ParametersTXTReader implements IParametersReading {
 
 		// Format of line : "TYPE CONFIRMATION=TRUE/FALSE name=value //Comment.".
 
-		ArrayList<String> lines = new FileReadingByLines(FilePaths.getParametersPath() + fileName).readFile();
+		ArrayList<String> lines = new FileReadingByLines(Resource.getParametersFile(fileName)).readFile();
 
 		for (String line : lines) {
 			String[] tokensTypeConfirmationParameterComment = line.split(" "); // {"TYPE", "CONFRIMATION=TRUE/FALSE",

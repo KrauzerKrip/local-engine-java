@@ -12,7 +12,7 @@ class ParametersInit {
 
 	/**
 	 * 
-	 * @param filePath   - name of file with format, e.g "exampleParameters.txt".
+	 * @param parametersFileReader.
 	 * @param parameters - object of class, that inherits {@link Parameters} class.
 	 * @return parameters - object of class, that inherits {@link Parameters} class,
 	 *         but now its HashMap of parameters filled with {name =

@@ -2,6 +2,7 @@ package eng_procedures.parameters_init;
 
 import eng_parameters.ParametersFileReader;
 import eng_parameters.parameters_groups.ConsoleParametersParameters;
+import eng_parameters.parameters_groups.GraphicsParameters;
 
 public class ConsoleParametersParametersInit {
 	private static final String CONSOLE_PARAMETERS_PARAMETERS_FILE_NAME = "consoleParametersParameters.txt";

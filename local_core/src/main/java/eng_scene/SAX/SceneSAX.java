@@ -1,7 +1,7 @@
 package eng_scene.SAX;
 
-import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,7 +18,7 @@ import eng_scene.raw_data.SceneDefaultEntityRawData;
 import eng_scene.raw_data.SceneEntityRawData;
 import eng_scene.raw_data.SceneModelRawData;
 import eng_scene.raw_data.SceneTriggerRawData;
-import eng_stuff.FilePaths;
+import game.Resource;
 
 /**
  * It is needed to parse XML scenes files.
@@ -45,13 +45,13 @@ public class SceneSAX {
 	 * Element in list has: Child of SceneEntityRawData instance.
 	 */
 	public static ArrayList<ArrayList<SceneEntityRawData>> parseXML(String sceneName)
-			throws ParserConfigurationException, SAXException, IOException {
+			throws ParserConfigurationException, SAXException, IOException, URISyntaxException {
 
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		SAXParser parser = factory.newSAXParser();
 
 		XMLHandler handler = new XMLHandler();
-		parser.parse(new File(String.format(FilePaths.getScenesPath() + "/%s/%s.xml", sceneName, sceneName)), handler);
+		parser.parse(Resource.getSceneFile(sceneName), handler);
 
 		ArrayList<ArrayList<SceneEntityRawData>> listWithLists = new ArrayList<ArrayList<SceneEntityRawData>>();
 

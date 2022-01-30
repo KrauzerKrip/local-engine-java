@@ -2,6 +2,7 @@ package eng_scene.SAX;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -14,6 +15,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import eng_console.Console;
 import eng_scene.raw_data.ObjectRawData;
 import eng_stuff.FilePaths;
+import game.Resource;
 
 /**
  * It is needed to parse XML objects files.
@@ -35,8 +37,9 @@ public class ObjectSAX {
 		XMLHandler handler = new XMLHandler();
 		
 		try {
-			parser.parse(new File(String.format("%s/%s/info.xml", FilePaths.getObjectsPath(), objectName)), handler);
-		} catch (IOException IOe) {
+			parser.parse(Resource.getObject(objectName).infoFile(), handler);
+		} catch (IOException | URISyntaxException e) {
+			Console.warn(e.toString());
 			parser.parse(new File(String.format("%s/%s/info.xml", FilePaths.getObjectsPath(), "eng_object_not_found")), handler); // if object not found
 		}
 

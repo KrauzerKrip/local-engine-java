@@ -26,7 +26,7 @@ import eng_scene.raw_data.SceneEntityRawData;
 import eng_scene.raw_data.SceneModelRawData;
 import eng_scene.raw_data.SceneTriggerRawData;
 import eng_script.Script;
-import eng_stuff.FilePaths;
+import game.Resource;
 
 /**
  * Class of a scene. It has methods to interact with a scene. Do not forget to
@@ -180,8 +180,7 @@ public class Scene {
 		String id = sceneEntityData.id;
 		float spriteHeight = objectRawData.spriteHeight;
 		float spriteWidth = objectRawData.spriteWidth;
-		Texture texture = new Texture(
-				String.format(FilePaths.getObjectsPath() + "%s/textures/texture.png", objectRawData.id));
+		Texture texture = new Texture(Resource.getObject(objectRawData.id).textureFile().getAbsolutePath());
 		Vector3f defaultPosition = sceneEntityData.defaultPos;
 		Vector3f defaultRotation = sceneEntityData.defaultRot;
 		String scriptName = sceneEntityData.scriptName;

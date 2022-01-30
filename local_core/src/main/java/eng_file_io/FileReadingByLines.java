@@ -8,10 +8,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileReadingByLines {
-	String fileDirectory;
+	private String fileDirectory;
+	private File file;
 	
 	public FileReadingByLines(String fileDirectory) {
 		this.fileDirectory = fileDirectory;
+	}
+	
+	public FileReadingByLines(File file) {
+		this.file = file;
 	}
 	
 	/**@return ArrayList with read lines.*/
@@ -20,7 +25,11 @@ public class FileReadingByLines {
 		ArrayList<String> lines = new ArrayList<String>();
 		
 		try {
-		    File file = new File(fileDirectory);
+			
+			if (file == null) {
+			    file = new File(fileDirectory);
+			}
+			
 		    FileReader fileReader = new FileReader(file);
 		    BufferedReader reader = new BufferedReader(fileReader);
 		    String line = reader.readLine();
