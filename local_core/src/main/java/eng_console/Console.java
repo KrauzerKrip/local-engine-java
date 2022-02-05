@@ -6,6 +6,6 @@ public class Console {
 	}
 	
 	public static void warn(String msg) {
-		System.out.println(msg);
+		System.err.println(msg);
 	}
 }
