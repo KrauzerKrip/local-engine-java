@@ -84,5 +84,6 @@
   	<module>test</module>
   	<module>local_core</module>
   	<module>game</module>
+    <module>ldk.map_editor</module>
   </modules>
 </project>

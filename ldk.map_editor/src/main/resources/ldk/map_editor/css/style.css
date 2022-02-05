@@ -1,0 +1,151 @@
+@import url("colors.css");
+
+.background {
+	-fx-background-color: background-color;
+}
+
+.dialog-pane {
+	-fx-background-color: background-color;
+}
+
+.dialog-pane > *.label {
+	-fx-text-fill: text-color;
+}
+
+.dialog-pane > *.button-bar > *.container > *.button{
+    -fx-background-color: element-color;
+}
+.dialog-pane > *.button-bar > *.container > *.button:hover{
+    -fx-background-color: hover-element-color;
+}
+
+.dialog-pane:header *.header-panel {
+	-fx-background-color: background-color;
+	-fx-text-fill: text-color;
+}
+
+.dialog-pane:header *.header-panel > *.label {
+	-fx-font-weight: bold;
+	-fx-font-size: 24;
+	-fx-text-fill: text-color;
+}
+
+.standard-element {
+	-fx-background-color: background-color;
+	-fx-text-fill: text-color;
+}
+
+.dark-element{
+	-fx-background-color: dark-color;
+	-fx-text-fill: text-color;
+}
+
+.separator .line {
+	-fx-border-color: dark-color;
+	-fx-border-width: 2;
+}
+
+.button {
+	-fx-text-fill: text-color;
+	-fx-background-color: element-color;
+}
+
+.button:hover {
+	-fx-background-color: hover-element-color;
+}
+
+.button:pressed {
+	-fx-background-color: hover-element-color;
+}
+
+.scroll-pane {
+	-fx-background-color: background-color;
+}
+
+.scroll-pane .scroll-bar {
+	-fx-background-color: dark-color;
+}
+
+.scroll-pane .scroll-bar .increment-button {
+	-fx-background-color: element-color;
+}
+
+.scroll-pane .scroll-bar .decrement-button {
+	-fx-background-color: element-color;
+}
+
+
+.scroll-pane .scroll-bar .increment-button:hover, .decrement-button:hover {
+	-fx-background-color: hover-element-color;
+}
+
+.scroll-pane .scroll-bar .thumb {
+	-fx-background-color: hover-element-color;
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+	-fx-background-color: light-element-color;
+}
+
+.image-view {
+	-fx-border-radius: 20px; /* Уголки */
+}
+
+.hyper-link:visited{
+	-fx-text-fill: blue;
+	-fx-border-width: 0;
+}
+
+
+.menu-bar {
+	-fx-background-color: element-color;
+}
+
+.menu-button{
+	-fx-background-color: element-color;
+	-fx-background-radius: 5;
+	-fx-font-weight: bold;
+	-fx-effect: null;
+}
+
+.menu-button .label{
+	-fx-text-fill: text-color;
+}
+
+.menu-button:hover {
+	-fx-background-color: hover-element-color;
+}
+
+.menu-item {
+    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+}
+
+.menu-item:hover {
+	-fx-background: hover-element-color;
+}
+
+.menu-item .label {
+	-fx-text-fill: white;
+	-fx-font-size: 14.0 pt;
+}
+
+.viewer {
+	-fx-background-color: black;
+	-fx-border-color: dark-color;
+	-fx-border-width: 8;
+}
+
+#tool_bar_main {
+	-fx-background-color: background-color;
+	-fx-border-color: dark-color;
+	-fx-border-width: 0 8 0 0;
+}
+
+#tool_bar_main .button {
+
+}
+
+.context-menu {
+	-fx-background-color: #3d3d3d;
+	-fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; 
+}

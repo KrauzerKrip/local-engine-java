@@ -1,0 +1,10 @@
+.root {
+	background-color: rgb(48, 48, 48);
+	dark-color: rgb(42, 42, 42);
+	element-color: rgb(64, 64, 64);
+	hover-element-color: rgb(72, 72, 72);
+	light-element-color: rgb(81, 81, 81);
+	active-element-color: rgb(92, 92, 92);
+	
+	text-color: rgb(232, 232, 232);
+}
