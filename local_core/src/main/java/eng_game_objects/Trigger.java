@@ -8,7 +8,7 @@ import eng_graphics.Texture;
 import eng_graphics.TextureInfo;
 import eng_physics.Collider;
 import eng_physics.Physics;
-import eng_stuff.FilePaths;
+import game.Resource;
 
 public class Trigger extends Entity implements IGraphicObject {
 	
@@ -21,7 +21,18 @@ public class Trigger extends Entity implements IGraphicObject {
 		if (preloadSprite) {
 			TextureInfo textureInfo = new TextureInfo();
 			textureInfo.setTextureInfoConstant(1, 1);
-			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(FilePaths.getObjectsPath() + "eng_trigger/textures/texture.png"), textureInfo);
+			
+			String texturePath = null;
+			
+			try {
+				texturePath = Resource.getObject("eng_trigger").textureFile().getAbsolutePath();
+			} catch (Exception e) {
+				texturePath = "";
+				e.printStackTrace();
+				Console.warn(e.toString());
+			}
+			
+			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(texturePath), textureInfo);
 		} else {
 			sprite = null;
 		}

@@ -8,6 +8,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.joml.Vector3f;
 import org.xml.sax.SAXException;
 
+import eng_console.Console;
 import eng_game_objects.Entity;
 import eng_game_objects.Model;
 import eng_game_objects.Object;
@@ -180,7 +181,18 @@ public class Scene {
 		String id = sceneEntityData.id;
 		float spriteHeight = objectRawData.spriteHeight;
 		float spriteWidth = objectRawData.spriteWidth;
-		Texture texture = new Texture(Resource.getObject(objectRawData.id).textureFile().getAbsolutePath());
+		
+		String texturePath = null;
+		
+		try {
+			texturePath = Resource.getObject(objectRawData.id).textureFile().getAbsolutePath();
+		} catch (Exception e) {
+			texturePath = "";
+			e.printStackTrace();
+			Console.warn(e.toString());
+		}
+		
+		Texture texture = new Texture(texturePath);
 		Vector3f defaultPosition = sceneEntityData.defaultPos;
 		Vector3f defaultRotation = sceneEntityData.defaultRot;
 		String scriptName = sceneEntityData.scriptName;
@@ -271,7 +283,7 @@ public class Scene {
 		entity.setId(id);
 
 		if (scriptName != null) {
-			if ((!scriptName.isEmpty()) || (scriptName == "null")) {
+			if ((!scriptName.isEmpty()) || (scriptName.equals("null"))) {
 				entity.setScript(new Script(scriptName));
 				entity.setEternalScript(isEternalScript);
 			}

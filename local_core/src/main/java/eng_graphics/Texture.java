@@ -18,6 +18,7 @@ import static org.lwjgl.stb.STBImage.stbi_failure_reason;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
 import static org.lwjgl.stb.STBImage.stbi_load;
 
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 
@@ -25,6 +26,7 @@ import org.lwjgl.system.MemoryStack;
 
 import eng_exceptions.NotMainThreadException;
 import eng_exceptions.TextureNotFoundException;
+import game.Resource;
 
 public class Texture {
 	
@@ -49,7 +51,7 @@ public class Texture {
         return id;
     }
 	
-	private static int loadTexture(String filePath) throws TextureNotFoundException, NotMainThreadException {
+	private static int loadTexture(String filePath) throws TextureNotFoundException, NotMainThreadException, NullPointerException, URISyntaxException {
 		
 		if (!("Thread[main".equals(Thread.currentThread().toString().split(",")[0]))) {
 			throw new NotMainThreadException(Texture.class.getName(), "can`t load texture from the thread that isn`t the 'main' thread.");
@@ -71,7 +73,7 @@ public class Texture {
 	        
 	        if (buffer == null) {
 	            new Exception("Image file [" + filePath  + "] not loaded: " + stbi_failure_reason()).printStackTrace();
-	            buffer = stbi_load("textures/texture_not_found.png", w, h, channels, 4);
+	            buffer = stbi_load(Resource.getObject("eng_texture_not_found").textureFile().getAbsolutePath(), w, h, channels, 4);
 		        if (buffer == null) {
 		           throw new TextureNotFoundException(Texture.class.getName(), filePath, stbi_failure_reason());
 		        }

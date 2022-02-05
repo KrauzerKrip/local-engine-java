@@ -37,6 +37,7 @@ public class ObjectSAX {
 		XMLHandler handler = new XMLHandler();
 		
 		try {
+			Console.write(objectName);
 			parser.parse(Resource.getObject(objectName).infoFile(), handler);
 		} catch (IOException | URISyntaxException e) {
 			Console.warn(e.toString());
