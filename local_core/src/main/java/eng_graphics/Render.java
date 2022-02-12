@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.joml.Matrix4f;
 
-import eng_file_io.LoadResource;
 import eng_game_objects.IGraphicObject;
 import eng_game_objects.IObject;
 import eng_graphics.camera.Camera;
@@ -32,8 +31,10 @@ public class Render {
 
     public void init(Window window) throws Exception {
         shaderHandler = new ShaderHandler();
-        shaderHandler.createVertexShader(LoadResource.loadResource("/resources/vertexShader.vs"));
-        shaderHandler.createFragmentShader(LoadResource.loadResource("/resources/fragmentShader.fs"));
+        Shader vertexShader = new Shader("vertexShader.vs");
+        Shader fragmentShader = new Shader("fragmentShader.fs");
+        shaderHandler.createVertexShader(vertexShader.load());
+        shaderHandler.createFragmentShader(fragmentShader.load());
         shaderHandler.shaderLink();
         
         // Create shader uniforms for matrixes.

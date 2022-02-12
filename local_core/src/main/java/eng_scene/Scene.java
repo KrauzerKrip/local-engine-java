@@ -1,5 +1,6 @@
 package eng_scene;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -182,17 +183,17 @@ public class Scene {
 		float spriteHeight = objectRawData.spriteHeight;
 		float spriteWidth = objectRawData.spriteWidth;
 		
-		String texturePath = null;
+		BufferedImage textureImage = null;
 		
 		try {
-			texturePath = Resource.getObject(objectRawData.id).textureFile().getAbsolutePath();
+			textureImage = Resource.getObject(objectRawData.id).textureImage();
 		} catch (Exception e) {
-			texturePath = "";
+			textureImage = null;
 			e.printStackTrace();
 			Console.warn(e.toString());
 		}
 		
-		Texture texture = new Texture(texturePath);
+		Texture texture = new Texture(textureImage);
 		Vector3f defaultPosition = sceneEntityData.defaultPos;
 		Vector3f defaultRotation = sceneEntityData.defaultRot;
 		String scriptName = sceneEntityData.scriptName;

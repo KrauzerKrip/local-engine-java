@@ -1,8 +1,11 @@
 package game;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
+
+import javax.imageio.ImageIO;
 
 public class Resource {
 	
@@ -10,33 +13,39 @@ public class Resource {
 		throw new IllegalStateException();
 	}
 	
-	public static ObjectFiles getObject(String objectName) throws URISyntaxException, NullPointerException {
+	public static ObjectStreams getObject(String objectName) throws NullPointerException {
 		
 		
-		File infoFile = null;
-		File textureFile = null;
+		InputStream infoStream = null;
+		BufferedImage textureImage = null;
 		
 		try {
-			infoFile = new File(MainGame.class.getResource("objects/" + objectName + "/info.xml").toExternalForm());
+			infoStream = Resource.class.getResourceAsStream("objects/" + objectName + "/info.xml");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			throw e;
 		}
 		
 		try {
-			textureFile = new File(MainGame.class.getResource("objects/" + objectName + "/textures/texture.png").toExternalForm());
-		} catch (NullPointerException e) {
+			textureImage = ImageIO.read(Resource.class.getResourceAsStream("objects/" + objectName + "/textures/texture.png"));
+		} catch (NullPointerException | IllegalArgumentException | IOException e) {
 			e.printStackTrace();
 		}
 		
-		return new ObjectFiles(infoFile, textureFile);
+		return new ObjectStreams(infoStream, textureImage);
 	}
 	
 	public static InputStream getParametersFile(String parametersName) throws NullPointerException {
 		return Resource.class.getResourceAsStream("parameters/" + parametersName);
+		
 	}
 	
-	public static File getSceneFile(String sceneName) throws NullPointerException {
-		return new File(Resource.class.getResource("scenes/" + sceneName + File.separator + sceneName + ".xml").toExternalForm());
+	public static InputStream getSceneFile(String sceneName) throws NullPointerException {
+		return Resource.class.getResourceAsStream("scenes/" + sceneName + File.separator + sceneName + ".xml");
 	}
+	
+	public static InputStream getVertexShaderStream(String shaderFileName) throws NullPointerException {
+		return Resource.class.getResourceAsStream("shaders/" + shaderFileName);
+	}
+	
 }

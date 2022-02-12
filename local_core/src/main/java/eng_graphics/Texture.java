@@ -14,29 +14,28 @@ import static org.lwjgl.opengl.GL11.glGenTextures;
 import static org.lwjgl.opengl.GL11.glPixelStorei;
 import static org.lwjgl.opengl.GL11.glTexImage2D;
 import static org.lwjgl.opengl.GL30.glGenerateMipmap;
-import static org.lwjgl.stb.STBImage.stbi_failure_reason;
 import static org.lwjgl.stb.STBImage.stbi_image_free;
-import static org.lwjgl.stb.STBImage.stbi_load;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.system.MemoryStack;
 
+import eng_console.Console;
 import eng_exceptions.NotMainThreadException;
 import eng_exceptions.TextureNotFoundException;
 import game.Resource;
 
 public class Texture {
 	
-	public String filePath;
-	
     private final int id;
+    private static final int BYTES_PER_PIXEL = 4;
 
-    public Texture(String filePath) throws Exception {
-        this(loadTexture(filePath));
-        this.filePath = filePath;
+    public Texture(BufferedImage image) throws Exception {
+        this(loadTexture(image));
     }
 
     public Texture(int id) {
@@ -51,7 +50,7 @@ public class Texture {
         return id;
     }
 	
-	private static int loadTexture(String filePath) throws TextureNotFoundException, NotMainThreadException, NullPointerException, URISyntaxException {
+	private static int loadTexture(BufferedImage image) throws TextureNotFoundException, NotMainThreadException, NullPointerException, URISyntaxException, IOException {
 		
 		if (!("Thread[main".equals(Thread.currentThread().toString().split(",")[0]))) {
 			throw new NotMainThreadException(Texture.class.getName(), "can`t load texture from the thread that isn`t the 'main' thread.");
@@ -63,24 +62,49 @@ public class Texture {
 		
 		
 		try (MemoryStack stack = MemoryStack.stackPush()) {
-	        IntBuffer w = stack.mallocInt(1);
-	        IntBuffer h = stack.mallocInt(1);
-	        IntBuffer channels = stack.mallocInt(1);
-	        
+
 	        /*OpenGL requires that texture images have a size of a power of two (2, 4, 8, 16, ...).*/
 	        
-	        buffer = stbi_load(filePath, w, h, channels, 4);
+	        //buffer = stbi_load(filePath, w, h, channels, 4);
+			
+            
+	        try {
+	        	
+		        width = image.getWidth();
+		        height = image.getHeight();
+	        	
+	            buffer = BufferUtils.createByteBuffer(width * height * BYTES_PER_PIXEL); //4 for RGBA, 3 for RGB
+	            
+			} catch (Exception e) {
+				e.printStackTrace();
+				
+				Console.warn("Texture: can`t load texture"); // TODO Error texture info printing.
+				
+				image = Resource.getObject("eng_texture_not_found").textureImage();
+				
+		        width = image.getWidth();
+		        height = image.getHeight();
+				
+	            buffer = BufferUtils.createByteBuffer(width * height * BYTES_PER_PIXEL); //4 for RGBA, 3 for RGB
+	            
+			}
 	        
-	        if (buffer == null) {
-	            new Exception("Image file [" + filePath  + "] not loaded: " + stbi_failure_reason()).printStackTrace();
-	            buffer = stbi_load(Resource.getObject("eng_texture_not_found").textureFile().getAbsolutePath(), w, h, channels, 4);
-		        if (buffer == null) {
-		           throw new TextureNotFoundException(Texture.class.getName(), filePath, stbi_failure_reason());
-		        }
-	        }
+	        int[] pixels = new int[width * height];
+	        
+            image.getRGB(0, 0, width, height, pixels, 0, width);
 
-	        width = w.get();
-	        height = h.get();
+            for(int y = 0; y < image.getHeight(); y++){
+                for(int x = 0; x < image.getWidth(); x++){
+                    int pixel = pixels[y * image.getWidth() + x];
+                    buffer.put((byte) ((pixel >> 16) & 0xFF));     // Red component
+                    buffer.put((byte) ((pixel >> 8) & 0xFF));      // Green component
+                    buffer.put((byte) (pixel & 0xFF));               // Blue component
+                    buffer.put((byte) ((pixel >> 24) & 0xFF));    // Alpha component. Only for RGBA
+                }
+            }
+
+            buffer.flip(); //FOR THE LOVE OF GOD DO NOT FORGET THIS
+
 	     }
 		
 		int textureId = glGenTextures();

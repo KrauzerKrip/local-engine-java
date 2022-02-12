@@ -1,8 +1,6 @@
 package eng_scene.SAX;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -14,7 +12,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import eng_console.Console;
 import eng_scene.raw_data.ObjectRawData;
-import eng_stuff.FilePaths;
 import game.Resource;
 
 /**
@@ -38,10 +35,10 @@ public class ObjectSAX {
 		
 		try {
 			Console.write(objectName);
-			parser.parse(Resource.getObject(objectName).infoFile(), handler);
-		} catch (IOException | URISyntaxException e) {
-			Console.warn(e.toString());
-			parser.parse(new File(String.format("%s/%s/info.xml", FilePaths.getObjectsPath(), "eng_object_not_found")), handler); // if object not found
+			parser.parse(Resource.getObject(objectName).infoStream(), handler);
+		} catch (IOException | IllegalArgumentException e) {
+			Console.warn("ObjectSAX: can`t load object '" + objectName + "' because of " + e.toString());
+			parser.parse(Resource.getObject("eng_object_not_found").infoStream(), handler); // if object not found
 		}
 
 		return entityRawData;

@@ -1,5 +1,7 @@
 package eng_game_objects;
 
+import java.awt.image.BufferedImage;
+
 import org.joml.Vector3f;
 
 import eng_console.Console;
@@ -22,17 +24,17 @@ public class Trigger extends Entity implements IGraphicObject {
 			TextureInfo textureInfo = new TextureInfo();
 			textureInfo.setTextureInfoConstant(1, 1);
 			
-			String texturePath = null;
+			BufferedImage textureImage = null;
 			
 			try {
-				texturePath = Resource.getObject("eng_trigger").textureFile().getAbsolutePath();
+				textureImage = Resource.getObject("eng_trigger").textureImage();
 			} catch (Exception e) {
-				texturePath = "";
+				textureImage = null;
 				e.printStackTrace();
 				Console.warn(e.toString());
 			}
 			
-			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(texturePath), textureInfo);
+			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(textureImage), textureInfo);
 		} else {
 			sprite = null;
 		}
