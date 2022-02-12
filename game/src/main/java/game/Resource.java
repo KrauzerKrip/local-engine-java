@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -41,7 +40,7 @@ public class Resource {
 	}
 	
 	public static InputStream getSceneFile(String sceneName) throws NullPointerException {
-		return Resource.class.getResourceAsStream("scenes/" + sceneName + File.separator + sceneName + ".xml");
+		return Resource.class.getResourceAsStream("scenes/" + sceneName + "/" + sceneName + ".xml");
 	}
 	
 	public static InputStream getVertexShaderStream(String shaderFileName) throws NullPointerException {

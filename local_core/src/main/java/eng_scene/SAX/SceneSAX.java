@@ -51,7 +51,13 @@ public class SceneSAX {
 		SAXParser parser = factory.newSAXParser();
 
 		XMLHandler handler = new XMLHandler();
-		parser.parse(Resource.getSceneFile(sceneName), handler);
+		
+		try {
+			parser.parse(Resource.getSceneFile(sceneName), handler);
+		} catch (Exception e) {
+			Console.warn("SceneSAX: can`t parse scene file " + sceneName);
+			e.printStackTrace();
+		}
 
 		ArrayList<ArrayList<SceneEntityRawData>> listWithLists = new ArrayList<ArrayList<SceneEntityRawData>>();
 
