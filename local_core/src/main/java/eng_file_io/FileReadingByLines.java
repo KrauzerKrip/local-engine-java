@@ -2,51 +2,56 @@ package eng_file_io;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class FileReadingByLines {
-	private String fileDirectory;
 	private File file;
-	
+	private InputStream inputStream;
+
 	public FileReadingByLines(String fileDirectory) {
-		this.fileDirectory = fileDirectory;
+		file = new File(fileDirectory);
 	}
-	
+
 	public FileReadingByLines(File file) {
 		this.file = file;
 	}
-	
-	/**@return ArrayList with read lines.*/
+
+	public FileReadingByLines(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	/** @return ArrayList with read lines. */
 	public ArrayList<String> readFile() throws Exception {
-		
+
 		ArrayList<String> lines = new ArrayList<String>();
-		
-		try {
-			
-			if (file == null) {
-			    file = new File(fileDirectory);
+
+		if (file != null) {
+			inputStream = new FileInputStream(file);
+		}
+
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+			String line = reader.readLine();
+
+			while (line != null) {
+				lines.add(line);
+				line = reader.readLine();
 			}
-			
-		    FileReader fileReader = new FileReader(file);
-		    BufferedReader reader = new BufferedReader(fileReader);
-		    String line = reader.readLine();
-		    while (line != null) {
-		        lines.add(line);
-		        line = reader.readLine();
-		    }
-			reader.close();
+
 			return lines;
 		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			e.printStackTrace();
 		}
-		
+
 		throw new Exception("FileReadingByLines: something went wrong!");
-	 
+
 	}
-	
+
 }
