@@ -45,7 +45,7 @@ public class App extends Application {
 
 	@Override
 	public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
-		App.stage = stage;
+		App.stage = stage; //
 		scene = new Scene(loadFXML("primary"), 1280, 720);
 		scene.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
 		stage.setTitle(WINDOW_TITLE);
