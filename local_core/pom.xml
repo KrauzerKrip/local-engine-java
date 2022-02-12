@@ -401,4 +401,48 @@
 		<classifier>${lwjgl.natives}</classifier>
 	</dependency>
   </dependencies>
+  
+  <build>
+        <plugins>
+        	
+        	 <plugin>
+    			<artifactId>maven-dependency-plugin</artifactId>
+    			<executions>
+       				<execution>
+            			<phase>prepare-package</phase>
+			            <goals>
+			                <goal>copy-dependencies</goal>
+			            </goals>
+			            <configuration>
+			                <outputDirectory>${project.build.directory}/lib</outputDirectory>
+			            </configuration>
+        			</execution>
+    			</executions>
+			</plugin>
+        
+        	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+    				<archive>
+       					<manifest>  
+            				<addClasspath>true</addClasspath>
+            				<classpathPrefix>lib/</classpathPrefix>
+            				<mainClass>game.Main</mainClass>
+        				</manifest>
+   					</archive>
+    			</configuration>
+			</plugin>
+        
+        <!-- https://stackoverflow.com/questions/7758099/how-can-i-use-maven-to-build-a-jar-with-required-libraries-in-a-sub-folder-like-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+          
+        </plugins>
+    </build>
 </project>
