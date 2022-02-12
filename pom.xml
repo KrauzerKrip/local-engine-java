@@ -85,5 +85,7 @@
   	<module>local_core</module>
   	<module>game</module>
     <module>ldk.map_editor</module>
+    <module>ldk.hub</module>
+    <module>hub</module>
   </modules>
 </project>

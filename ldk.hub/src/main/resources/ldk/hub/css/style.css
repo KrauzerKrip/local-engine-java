@@ -1,0 +1,91 @@
+.background {
+	-fx-background-color: rgb(48, 48, 48);
+}
+
+.standard-element {
+	-fx-text-fill: rgb(232, 232, 232);
+	-fx-background-color: rgb(48, 48, 48);
+}
+
+.button {
+	-fx-text-fill: rgb(232, 232, 232);
+	-fx-background-color: rgb(64, 64, 64);
+}
+
+.button:hover {
+	-fx-background-color: rgb(72, 72, 72);
+}
+
+.scroll-pane {
+	-fx-background-color: rgb(48, 48, 48);
+}
+
+.scroll-pane .scroll-bar {
+	-fx-background-color: rgb(42, 42, 42);
+}
+
+.scroll-pane .scroll-bar .increment-button {
+	-fx-background-color: rgb(64, 64, 64);
+}
+
+.scroll-pane .scroll-bar .decrement-button {
+	-fx-background-color: rgb(64, 64, 64);
+}
+
+
+.scroll-pane .scroll-bar .increment-button:hover, .decrement-button:hover {
+	-fx-background-color: rgb(72, 72, 72);
+}
+
+.scroll-pane .scroll-bar .thumb {
+	-fx-background-color: rgb(72, 72, 72);
+}
+
+.scroll-pane .scroll-bar .thumb:hover {
+	-fx-background-color: rgb(81, 81, 81);
+}
+
+.image-view {
+	-fx-border-radius: 20px; /* Уголки */
+}
+
+.hyper-link:visited{
+	-fx-text-fill: blue;
+	-fx-border-width: 0;
+}
+
+.menu-button{
+	-fx-text-fill: rgb(232, 232, 232);
+	-fx-background-color: rgb(64, 64, 64);
+	-fx-background-radius: 5;
+	-fx-font-weight: bold;
+	-fx-effect: null;
+}
+
+.menu-button .label{
+	-fx-text-fill: rgb(232, 232, 232);
+}
+
+.menu-button:hover {
+	-fx-background-color: gray;
+}
+
+.menu-item {
+    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+    -fx-background: darkgray;
+}
+
+.menu-item:hover {
+	-fx-background: gray;
+}
+
+.menu-item .label {
+	-fx-text-fill: white;
+	-fx-padding-left: 50.0px;
+	-fx-font-size: 14.0 pt;
+}
+
+.context-menu {
+	-fx-background-color: #3d3d3d;
+	-fx-padding: 0.333333em 0.083333em 0.666667em 0.083333em; 
+}

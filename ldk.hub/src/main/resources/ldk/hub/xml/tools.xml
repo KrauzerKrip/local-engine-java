@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+	<tool name="Map Editor" image_path="C:\Users\User\git\ldk_hub\src\main\resources\ldk\ldk_hub\images\map_editor.png" tool_executable="C:\Users\User\git\ldk_hub\src\main\resources\ldk\ldk_hub\images\map_editor.png" padding_left="0"></tool>
+	<tool name="Scene Editor" image_path="C:\Users\User\git\ldk_hub\src\main\resources\ldk\ldk_hub\images\scene_editor.png" tool_executable="C:\Users\User\git\ldk_hub\src\main\resources\ldk\ldk_hub\images\scene_editor.png" padding_left="8"></tool>
+	</tools>
