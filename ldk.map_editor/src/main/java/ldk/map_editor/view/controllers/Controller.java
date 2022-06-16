@@ -1,6 +1,9 @@
 package ldk.map_editor.view.controllers;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 import ldk.map_editor.App;
 import ldk.map_editor.exceptions.ProjectNotLoadedException;
 import ldk.map_editor.model.Editor;
@@ -10,6 +13,11 @@ import ldk.map_editor.view.View;
 public class Controller extends View{
 	
 	Editor editor;
+	
+	public void init(Stage stage) {
+		editor.setDialogTextField(new DialogTextField(stage));
+		
+	}
 
 	public void setEditor(Editor editor) {
 		this.editor = editor;
@@ -17,7 +25,7 @@ public class Controller extends View{
 	}
 	
 	@FXML
-	private void fileSave() throws ProjectNotLoadedException {
+	private void fileSave() throws ProjectNotLoadedException, IOException {
 		editor.saveProject();
 	}
 	

@@ -40,8 +40,8 @@ public class App extends Application {
 
 	private static Controller controller;
 	private Editor editor;
-	
-	private static String defaultFile;
+
+	private static String startFile;
 
 	@Override
 	public void start(@SuppressWarnings("exports") Stage stage) throws IOException {
@@ -52,13 +52,16 @@ public class App extends Application {
 		stage.initStyle(StageStyle.DECORATED);
 		stage.setScene(scene);
 		stage.setMaximized(true);
-		
+
 		stage.show();
 
 		stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, event -> {
 			try {
 				closeWindowEvent(event);
 			} catch (ProjectNotLoadedException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
@@ -68,8 +71,10 @@ public class App extends Application {
 		editor.setModeUpdateHandler(new ModeUpdateUIHandler(controller));
 
 		controller.setEditor(editor);
-		
+
 		editor.setMode(EditorModes.SELECTION);
+
+		controller.init(stage);
 
 		Thread.setDefaultUncaughtExceptionHandler((thread, exception) -> {
 
@@ -100,13 +105,47 @@ public class App extends Application {
 			alert.show();
 
 		});
-		
-		if (defaultFile != null) {
-			File file = new File(defaultFile);
+
+		if (startFile == null) {
+			Alert dialogStart = new Alert(AlertType.CONFIRMATION, "How shall we start our work?", ButtonType.CLOSE);
+
+			dialogStart.setHeaderText("Hello!");
+
+			ButtonType buttonTypeNew = new ButtonType("New project!");
+			ButtonType buttonTypeOpen = new ButtonType("Open a project!");
+
+			dialogStart.getButtonTypes().addAll(buttonTypeNew, buttonTypeOpen);
+
+			dialogStart.initStyle(StageStyle.UNDECORATED);
+
+			DialogPane dialogPane = dialogStart.getDialogPane();
+			dialogPane.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
+			dialogPane.getStyleClass().add("dialog-pane");
+
+
+			dialogStart.showAndWait().ifPresent((buttonType) -> {
+				if (buttonType == buttonTypeNew) {
+					try {
+						editor.newProject();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				} else if (buttonType == buttonTypeOpen) {
+					//
+				} else if (buttonType == ButtonType.CLOSE) {
+					exitWithConfirmation();
+				}
+
+			});
+		} else {
+			File file = new File(startFile);
 			if (file.exists() && file.isFile()) {
 				editor.loadProject(file.getName().split(".")[0]);
 			} else {
-				throw new FileNotFoundException(String.format("Path '%s' isn`t a file or doesn`t exist. %n Project ID got: %s", defaultFile, file.getName().split(".")[0]));
+				throw new FileNotFoundException(
+						String.format("Path '%s' isn`t a file or doesn`t exist. %n Project ID got: %s", startFile,
+								file.getName().split(".")[0]));
 			}
 		}
 
@@ -115,26 +154,26 @@ public class App extends Application {
 //	@Override
 //	public void stop() throws ProjectNotLoadedException {
 //	}
-	
-	public static void exitWithConfirmation( ) {
+
+	public static void exitWithConfirmation() {
 		Event.fireEvent(stage.getScene().getWindow(),
 				new WindowEvent(stage.getScene().getWindow(), WindowEvent.WINDOW_CLOSE_REQUEST));
 	}
 
-	private void closeWindowEvent(WindowEvent event) throws ProjectNotLoadedException {
+	private void closeWindowEvent(WindowEvent event) throws ProjectNotLoadedException, IOException {
 
-		if (!editor.areThereUnsavedChanges()) {
+		if (!editor.isThereUnsavedChanges()) {
 			System.exit(0);
 		}
 
-		Alert alert = new Alert(AlertType.CONFIRMATION, "There are unsaved changes. Do you want to save them? \n" + defaultFile,
-				ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
-		
+		Alert alert = new Alert(AlertType.CONFIRMATION,
+				"There are unsaved changes. Do you want to save them? \n" + startFile, ButtonType.YES, ButtonType.NO,
+				ButtonType.CANCEL);
+
 		alert.initStyle(StageStyle.UNDECORATED);
-		
+
 		DialogPane dialogPane = alert.getDialogPane();
-		dialogPane.getStylesheets().add(
-		   getClass().getResource("css/style.css").toExternalForm());
+		dialogPane.getStylesheets().add(getClass().getResource("css/style.css").toExternalForm());
 		dialogPane.getStyleClass().add("dialog-pane");
 
 		Optional<ButtonType> result = alert.showAndWait();
@@ -168,11 +207,10 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		if (args.length > 0) {
-			
-			defaultFile = args[0]
-					;
+
+			startFile = args[0];
 		}
-		
+
 		try {
 			launch();
 		} catch (Exception e) {

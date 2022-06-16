@@ -2,7 +2,10 @@ package ldk.map_editor.model.project;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 
+import ldk.map_editor.model.project.file_work.IProjectCreator;
 import ldk.map_editor.model.project.file_work.IProjectExport;
 import ldk.map_editor.model.project.file_work.IProjectLoader;
 import ldk.map_editor.model.project.file_work.IProjectSaver;
@@ -16,17 +19,29 @@ public class Project {
 	private final String name;
 	
 	private MapProject mapProject;
+	//private File projectFile;
 	
+	private IProjectCreator projectCreator;
 	private IProjectLoader projectLoader;
 	private IProjectSaver projectSaver;
 	private IProjectExport projectExport;
 
 	
-	public Project(String name, IProjectLoader projectLoader, IProjectSaver projectSaver, IProjectExport projectExport) {
+	public Project(String name, IProjectCreator projectCreator, IProjectLoader projectLoader, IProjectSaver projectSaver, IProjectExport projectExport) {
 		this.name = name;
+		this.projectCreator = projectCreator;
 		this.projectLoader = projectLoader;
 		this.projectSaver = projectSaver;
 		this.projectExport = projectExport;
+	}
+	
+	private void create() throws IOException {
+		if (getProjectFile().exists()) {
+			throw new FileAlreadyExistsException("Project file already exists.");
+		}
+		
+		File projectFile = getProjectFile();
+		projectCreator.create(projectFile);
 	}
 	
 	public void load() throws FileNotFoundException {
@@ -40,14 +55,25 @@ public class Project {
 		
 	}
 	
-	public void save() {
-		projectSaver.save(getProjectFile(), mapProject);
+	public void save() throws IOException {
+		File projectFile = getProjectFile();
+		
+		if (projectFile.exists()) {
+			projectSaver.save(getProjectFile(), this);
+		} else {
+			create();
+		}
+
 	}
 	
 	public void export(String path) {
 		projectExport.export(new File(path));
 	}
 	
+	/**
+	 * It doesn`t check if file exists.
+	 * @return unchecked file. 
+	 */
 	private File getProjectFile() {
 		return new File(FilePaths.MAPS_PROJECTS_PATH + name + FILE_FORMAT);
 	}

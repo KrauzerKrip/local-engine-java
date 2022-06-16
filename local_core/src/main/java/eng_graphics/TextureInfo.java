@@ -20,8 +20,8 @@ public class TextureInfo {
 		this.mode = Mode.CONSTANT;
 		this.ratioHeightTextureSprite = 0;
 		this.ratioWidthTextureSprite = 0;
-		this.textureHeight = 1 /  textureHeight;
-		this.textureWidth = 1 / textureWidth;
+		this.textureHeight = 1 /  textureHeight; // TODO this wtf
+		this.textureWidth = 1 / textureWidth; // TODO this too
 	}
 
 	/**

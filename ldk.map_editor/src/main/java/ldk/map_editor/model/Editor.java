@@ -1,13 +1,16 @@
 package ldk.map_editor.model;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import ldk.map_editor.exceptions.ProjectNotLoadedException;
 import ldk.map_editor.model.enums.EditorModes;
 import ldk.map_editor.model.project.Project;
+import ldk.map_editor.model.project.file_work.IProjectCreator;
 import ldk.map_editor.model.project.file_work.IProjectExport;
 import ldk.map_editor.model.project.file_work.IProjectLoader;
 import ldk.map_editor.model.project.file_work.IProjectSaver;
+import ldk.map_editor.view.controllers.IDialogTextField;
 import ldk.map_editor.view.controllers.IModeUpdateHandler;
 
 public class Editor {
@@ -17,6 +20,7 @@ public class Editor {
 	
 	private Project project;
 	
+	private IProjectCreator projectCreator;
 	private IProjectLoader projectLoader;
 	private IProjectSaver projectSaver;
 	private IProjectExport projectExport;
@@ -24,8 +28,10 @@ public class Editor {
 	private EditorModes mode;
 	
 	private IModeUpdateHandler modeUpdateHandler;
+	private IDialogTextField dialogTextField;
 	
 	public Editor() {
+		//projectCreator = new;
 		//projectLoader = new;
 		//projectSaver = new;
 		//projectExport = new;
@@ -35,17 +41,26 @@ public class Editor {
 		this.modeUpdateHandler = modeUpdateHandler;
 	}
 	
+	public void setDialogTextField(IDialogTextField dialogTextField) {
+		this.dialogTextField = dialogTextField;
+	}
+	
 	public void setMode(EditorModes mode) {
 		this.mode = mode;
 		modeUpdateHandler.handle(mode);
 	}
 	
+	public void newProject() throws IOException {
+		String result = dialogTextField.raise("How do you want to name your map?");
+		project = new Project(result, projectCreator, projectLoader, projectSaver, projectExport);
+	}
+	
 	public void loadProject(String mapProjectID) throws FileNotFoundException {
-		project = new Project(mapProjectID, projectLoader, projectSaver, projectExport);
+		project = new Project(mapProjectID, projectCreator, projectLoader, projectSaver, projectExport);
 		project.load();
 	}
 	
-	public void saveProject() throws ProjectNotLoadedException {
+	public void saveProject() throws ProjectNotLoadedException, IOException {
 		if (project == null) {
 			throw new ProjectNotLoadedException(this.getClass().getName());
 		}
@@ -64,8 +79,8 @@ public class Editor {
 		
 	}
 	
-	public boolean areThereUnsavedChanges() {
-		return true; // TODO areThereUnsavedChanges().
+	public boolean isThereUnsavedChanges() {
+		return true; // TODO isThereUnsavedChanges(). 
 	}
 	
 	public EditorModes getMode() {
