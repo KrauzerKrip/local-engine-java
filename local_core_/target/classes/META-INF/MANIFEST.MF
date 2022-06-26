@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Built-By: User
+Build-Jdk: 17.0.1
+Class-Path: lib/game-0.0.1-SNAPSHOT.jar lib/joml-1.10.1.jar lib/mockito-
+ core-4.2.0.jar lib/byte-buddy-1.12.4.jar lib/byte-buddy-agent-1.12.4.ja
+ r lib/objenesis-3.2.jar lib/lwjgl-3.3.0.jar lib/lwjgl-assimp-3.3.0.jar 
+ lib/lwjgl-bgfx-3.3.0.jar lib/lwjgl-cuda-3.3.0.jar lib/lwjgl-egl-3.3.0.j
+ ar lib/lwjgl-glfw-3.3.0.jar lib/lwjgl-jawt-3.3.0.jar lib/lwjgl-jemalloc
+ -3.3.0.jar lib/lwjgl-libdivide-3.3.0.jar lib/lwjgl-llvm-3.3.0.jar lib/l
+ wjgl-lmdb-3.3.0.jar lib/lwjgl-lz4-3.3.0.jar lib/lwjgl-meow-3.3.0.jar li
+ b/lwjgl-meshoptimizer-3.3.0.jar lib/lwjgl-nanovg-3.3.0.jar lib/lwjgl-nf
+ d-3.3.0.jar lib/lwjgl-nuklear-3.3.0.jar lib/lwjgl-odbc-3.3.0.jar lib/lw
+ jgl-openal-3.3.0.jar lib/lwjgl-opencl-3.3.0.jar lib/lwjgl-opengl-3.3.0.
+ jar lib/lwjgl-opengles-3.3.0.jar lib/lwjgl-openvr-3.3.0.jar lib/lwjgl-o
+ pus-3.3.0.jar lib/lwjgl-ovr-3.3.0.jar lib/lwjgl-par-3.3.0.jar lib/lwjgl
+ -remotery-3.3.0.jar lib/lwjgl-rpmalloc-3.3.0.jar lib/lwjgl-shaderc-3.3.
+ 0.jar lib/lwjgl-spvc-3.3.0.jar lib/lwjgl-sse-3.3.0.jar lib/lwjgl-stb-3.
+ 3.0.jar lib/lwjgl-tinyexr-3.3.0.jar lib/lwjgl-tinyfd-3.3.0.jar lib/lwjg
+ l-tootle-3.3.0.jar lib/lwjgl-vma-3.3.0.jar lib/lwjgl-vulkan-3.3.0.jar l
+ ib/lwjgl-xxhash-3.3.0.jar lib/lwjgl-yoga-3.3.0.jar lib/lwjgl-zstd-3.3.0
+ .jar lib/lwjgl-3.3.0-natives-windows.jar lib/lwjgl-assimp-3.3.0-natives
+ -windows.jar lib/lwjgl-bgfx-3.3.0-natives-windows.jar lib/lwjgl-glfw-3.
+ 3.0-natives-windows.jar lib/lwjgl-jemalloc-3.3.0-natives-windows.jar li
+ b/lwjgl-libdivide-3.3.0-natives-windows.jar lib/lwjgl-llvm-3.3.0-native
+ s-windows.jar lib/lwjgl-lmdb-3.3.0-natives-windows.jar lib/lwjgl-lz4-3.
+ 3.0-natives-windows.jar lib/lwjgl-meow-3.3.0-natives-windows.jar lib/lw
+ jgl-meshoptimizer-3.3.0-natives-windows.jar lib/lwjgl-nanovg-3.3.0-nati
+ ves-windows.jar lib/lwjgl-nfd-3.3.0-natives-windows.jar lib/lwjgl-nukle
+ ar-3.3.0-natives-windows.jar lib/lwjgl-openal-3.3.0-natives-windows.jar
+  lib/lwjgl-opengl-3.3.0-natives-windows.jar lib/lwjgl-opengles-3.3.0-na
+ tives-windows.jar lib/lwjgl-openvr-3.3.0-natives-windows.jar lib/lwjgl-
+ opus-3.3.0-natives-windows.jar lib/lwjgl-ovr-3.3.0-natives-windows.jar 
+ lib/lwjgl-par-3.3.0-natives-windows.jar lib/lwjgl-remotery-3.3.0-native
+ s-windows.jar lib/lwjgl-rpmalloc-3.3.0-natives-windows.jar lib/lwjgl-sh
+ aderc-3.3.0-natives-windows.jar lib/lwjgl-spvc-3.3.0-natives-windows.ja
+ r lib/lwjgl-sse-3.3.0-natives-windows.jar lib/lwjgl-stb-3.3.0-natives-w
+ indows.jar lib/lwjgl-tinyexr-3.3.0-natives-windows.jar lib/lwjgl-tinyfd
+ -3.3.0-natives-windows.jar lib/lwjgl-tootle-3.3.0-natives-windows.jar l
+ ib/lwjgl-vma-3.3.0-natives-windows.jar lib/lwjgl-xxhash-3.3.0-natives-w
+ indows.jar lib/lwjgl-yoga-3.3.0-natives-windows.jar lib/lwjgl-zstd-3.3.
+ 0-natives-windows.jar
+Main-Class: game.Main
+Created-By: Maven Integration for Eclipse
+

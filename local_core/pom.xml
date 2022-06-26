@@ -428,7 +428,7 @@
        					<manifest>  
             				<addClasspath>true</addClasspath>
             				<classpathPrefix>lib/</classpathPrefix>
-            				<mainClass>game.Main</mainClass>
+            				<mainClass>main.Main</mainClass>
         				</manifest>
    					</archive>
     			</configuration>

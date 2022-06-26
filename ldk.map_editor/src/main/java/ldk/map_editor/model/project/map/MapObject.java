@@ -1,12 +1,7 @@
 package ldk.map_editor.model.project.map;
 
-import java.io.Serializable;
-
-import eng_game_objects.IGraphicObject;
-import eng_game_objects.Object;
-
-public class MapObject extends Object implements Serializable, IGraphicObject {
-
+public class MapObject //extends Object implements Serializable, IGraphicObject {
+{
 	/**
 	 * 
 	 */

@@ -3,7 +3,7 @@ package eng_parameters;
 import java.util.HashMap;
 
 /**
- * Needed to get game parameters from a file.
+ * Needed to get main parameters from a file.
  */
 public interface IParametersReading {
 

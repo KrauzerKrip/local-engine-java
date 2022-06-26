@@ -5,7 +5,7 @@ import java.util.HashMap;
 import eng_parameters.parameters_readers.ParametersTXTReader;
 
 /**
- * Needed to get game parameters from a file.
+ * Needed to get main parameters from a file.
  */
 public class ParametersFileReader {
 	private final String fileName;

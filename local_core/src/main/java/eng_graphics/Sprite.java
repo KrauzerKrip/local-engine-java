@@ -109,7 +109,7 @@ public class Sprite {
 			glEnableVertexAttribArray(0);
 
 			// Define structure of the data and store it in one of the attribute lists of
-			// the VAO | 3D game developments with LWJGL, Rendering, page 35.
+			// the VAO | 3D main developments with LWJGL, Rendering, page 35.
 			/*
 			 * The parameters are: index: Specifies the location where the shader expects
 			 * this data. size: Specifies the number of components per vertex attribute

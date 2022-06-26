@@ -2,7 +2,7 @@ package eng_game_objects;
 
 import org.joml.Vector3f;
 
-/**Class of objects in a game.*/
+/**Class of objects in a main.*/
 public class Object implements IObject {
 
 	private final Vector3f position;
