@@ -12,13 +12,13 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import eng_console.Console;
 import eng_scene.raw_data.ObjectRawData;
-import game.Resource;
+import game.ResourceUsual;
 
 /**
  * It is needed to parse XML objects files.
  */
 public class ObjectSAX {
-
+	
 	static ObjectRawData entityRawData;
 
 	/**
@@ -33,12 +33,14 @@ public class ObjectSAX {
 
 		XMLHandler handler = new XMLHandler();
 		
+		ResourceUsual resourceUsual = new ResourceUsual();
+		
 		try {
 			Console.write(objectName);
-			parser.parse(Resource.getObject(objectName).infoStream(), handler);
+			parser.parse(resourceUsual.getObject(objectName).infoStream(), handler);
 		} catch (IOException | IllegalArgumentException e) {
 			Console.warn("ObjectSAX: can`t load object '" + objectName + "' because of " + e.toString());
-			parser.parse(Resource.getObject("eng_object_not_found").infoStream(), handler); // if object not found
+			parser.parse(resourceUsual.getObject("eng_object_not_found").infoStream(), handler); // if object not found
 		}
 
 		return entityRawData;

@@ -1,4 +1,4 @@
-package main;
+package game;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
@@ -25,6 +25,7 @@ import eng_parameters.parameters_groups.SceneParameters;
 import eng_scene.Scene;
 import local_engine.SceneControlling;
 import local_engine.Time;
+import main.SceneEntitiesHandlingController;
 
 public class Game implements IGameLogic {
 	

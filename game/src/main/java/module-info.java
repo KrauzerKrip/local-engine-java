@@ -1,7 +1,8 @@
 module game {
 	requires java.desktop;
-	
-	exports game to local_core;
+	requires local_core;
+	requires org.joml;
+
 //    
 //    opens game.resources to javafx.fxml;
 //    opens ldk.ldk_map_editor to javafx.fxml;

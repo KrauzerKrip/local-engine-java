@@ -8,11 +8,7 @@ import javax.imageio.ImageIO;
 
 public class Resource {
 	
-	private Resource() {
-		throw new IllegalStateException();
-	}
-	
-	public static ObjectStreams getObject(String objectName) throws NullPointerException {
+	public ObjectStreams getObject(String objectName) throws NullPointerException {
 		
 		
 		InputStream infoStream = null;
@@ -27,23 +23,23 @@ public class Resource {
 		
 		try {
 			textureImage = ImageIO.read(Resource.class.getResourceAsStream("objects/" + objectName + "/textures/texture.png"));
-		} catch (NullPointerException | IllegalArgumentException | IOException e) {
+		} catch (NullPointerException | Illega nmObject  | IOException e) {
 			e.printStackTrace();
 		}
 		
 		return new ObjectStreams(infoStream, textureImage);
 	}
 	
-	public static InputStream getParametersFile(String parametersName) throws NullPointerException {
+	public InputStream getParametersFile(String parametersName) throws NullPointerException {
 		return Resource.class.getResourceAsStream("parameters/" + parametersName);
 		
 	}
 	
-	public static InputStream getSceneFile(String sceneName) throws NullPointerException {
+	public InputStream getSceneFile(String sceneName) throws NullPointerException {
 		return Resource.class.getResourceAsStream("scenes/" + sceneName + "/" + sceneName + ".xml");
 	}
 	
-	public static InputStream getVertexShaderStream(String shaderFileName) throws NullPointerException {
+	public InputStream getVertexShaderStream(String shaderFileName) throws NullPointerException {
 		return Resource.class.getResourceAsStream("shaders/" + shaderFileName);
 	}
 	

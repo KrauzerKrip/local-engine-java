@@ -1,6 +1,7 @@
 package main;
 
 import eng_graphics.Loop;
+import game.Game;
 import eng_graphics.IGameLogic;
  
 public class Main {

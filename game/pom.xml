@@ -9,6 +9,19 @@
   <name>Game</name>
   <description>All stuff for the game.</description>
   
+   <dependencies>
+   	<dependency>
+    	<groupId>local_engine</groupId>
+    	<artifactId>local_core</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+    <groupId>org.joml</groupId>
+  		<artifactId>joml</artifactId>
+ 	 	<version>1.10.1</version>
+	</dependency>
+   </dependencies>
+  
    <build>
         <plugins>
         	
