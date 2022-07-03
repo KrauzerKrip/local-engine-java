@@ -42,7 +42,7 @@ class ParametersInit {
 	private HashMap<String, ConsoleParameter> getInitedParametersHashMap(ParametersFileReader parametersFileReader)
 			throws Exception {
 
-		HashMap<String, Object[]> parametersRawDataMap = parametersFileReader.getParametersRawDataMap();
+		HashMap<String, Object[]> parametersRawDataMap = parametersFileReader.getParametersRawDataMap(); // можно или создать интерфейс для класса ресурсов, или давать ресурс как стрим
 		HashMap<String, ConsoleParameter> parametersHashMap = new HashMap<String, ConsoleParameter>();
 
 		for (Entry<String, Object[]> entrySet : parametersRawDataMap.entrySet()) {

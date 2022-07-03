@@ -2,21 +2,20 @@ package game;
 
 import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.joml.Vector3f;
 
-import eng_console.CommandHandler;
 import eng_game_objects.Entity;
-import eng_game_objects.IGraphicObject;
 import eng_game_objects.IObject;
-import eng_game_objects.Object;
 import eng_graphics.IGameLogic;
 import eng_graphics.Render;
 import eng_graphics.Window;
 import eng_graphics.camera.Camera;
 import eng_graphics.camera.StrongParentEntityCameraController;
+import eng_handling_control.CalculationEntitiesForHandlingByDistance;
+import eng_handling_control.CalculationEntitiesForHandlingDirect;
+import eng_handling_control.ICalculationEntitiesForHandling;
+import eng_handling_control.SceneEntitiesHandlingController;
 import eng_input.IInputLogic;
 import eng_input.InputHandler;
 import eng_parameters.parameters_groups.GraphicsParameters;
@@ -25,7 +24,6 @@ import eng_parameters.parameters_groups.SceneParameters;
 import eng_scene.Scene;
 import local_engine.SceneControlling;
 import local_engine.Time;
-import main.SceneEntitiesHandlingController;
 
 public class Game implements IGameLogic {
 	
@@ -37,7 +35,7 @@ public class Game implements IGameLogic {
 	private Scene scene;
 
 	private int inputVertical;
-	private int inputHorizontal;
+	private int inputHorizontal; 
 	private int input2;
 	private double[] wheelOffsets;
 	private float rotationY = 0.0f;
@@ -47,7 +45,7 @@ public class Game implements IGameLogic {
 	private final Render render;
 
 	private Time time;
-
+ 
 	private final IInputLogic iinputLogic = new InputHandler();
 
 	private final Camera camera = new Camera();
@@ -57,7 +55,7 @@ public class Game implements IGameLogic {
 	private boolean isFutureEnded = true;
 	private ArrayList<IObject> renderingObjects1;
 	private ArrayList<IObject> physicsEntities1;
-	private ArrayList<IObject> scriptEntities1;
+	private ArrayList<IObject> scriptEntities1; 
 	
 	
 	public Game() throws Exception {
@@ -96,7 +94,7 @@ public class Game implements IGameLogic {
 		
 		final float HANDLING_DISTANCE = (float) GraphicsParameters.getInstance().getParameterValue("handlingDistance");
 		
-		if ((boolean) SceneParameters.getInstance().getParameterValue("objectDynamicHandling")) { // It should be gotten from a method too.
+		if ((boolean) SceneParameters.getInstance().getParameterValue("objectDynamicHandling")) {
 			calculationEntitiesForHandling = new CalculationEntitiesForHandlingByDistance(scene, camera, HANDLING_DISTANCE);
 			System.out.println("objectDynamicHandling == true");
 		} else { 

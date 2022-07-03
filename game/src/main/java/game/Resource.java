@@ -6,7 +6,10 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
-public class Resource {
+import eng_file_io.IResources;
+import eng_file_io.ObjectStreams;
+
+public class Resource implements IResources {
 	
 	public ObjectStreams getObject(String objectName) throws NullPointerException {
 		
@@ -23,8 +26,8 @@ public class Resource {
 		
 		try {
 			textureImage = ImageIO.read(Resource.class.getResourceAsStream("objects/" + objectName + "/textures/texture.png"));
-		} catch (NullPointerException | Illega nmObject  | IOException e) {
-			e.printStackTrace();
+		} catch (NullPointerException | IllegalArgumentException | IOException e) {
+			e.printStackTrace();   
 		}
 		
 		return new ObjectStreams(infoStream, textureImage);

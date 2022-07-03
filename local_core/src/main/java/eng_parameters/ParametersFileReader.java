@@ -1,7 +1,8 @@
-package eng_parameters;
+ package eng_parameters;
 
 import java.util.HashMap;
 
+import eng_file_io.IResources;
 import eng_parameters.parameters_readers.ParametersTXTReader;
 
 /**
@@ -9,16 +10,20 @@ import eng_parameters.parameters_readers.ParametersTXTReader;
  */
 public class ParametersFileReader {
 	private final String fileName;
-
+	private final IResources iResources;
+	
 	/**
 	 * @params filePath - name of the file (NOT A DIRECTORY!).
 	 */
-	public ParametersFileReader(String fileName) {
+	public ParametersFileReader(String fileName, IResources iResources) {
 		this.fileName = fileName;
+		this.iResources = iResources;
 	}
 
 	/**
 	 * Reads parameters and its values from a file.
+	 * 
+	 * Choosing right way to read parameters.
 	 * 
 	 * @return HashMap<String, Object[]> where String is name of parameter and
 	 *         Object[] is {type of parameter, value of parameter, is confirmation needed, comment}.
@@ -35,7 +40,7 @@ public class ParametersFileReader {
 		}
 
 		if (parametersReading != null) {
-			return parametersReading.getParametersRawDataMapByStrategy(fileName);
+			return parametersReading.getParametersRawDataMapByStrategy(iResources.getParametersFile(fileName));
 		} else {
 			throw new Exception("ParametersFileReader: parametersReading is null!");
 		}

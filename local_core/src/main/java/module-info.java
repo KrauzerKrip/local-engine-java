@@ -8,9 +8,11 @@ module local_core {
 	
 	exports eng_console;
 	exports eng_exceptions;
+	exports eng_file_io;
 	exports eng_game_objects;
 	exports eng_graphics;
 	exports eng_graphics.camera;
+	exports eng_handling_control;
 	exports eng_input;
 	exports eng_parameters;
 	exports eng_parameters.parameters_groups;

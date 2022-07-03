@@ -1,8 +1,17 @@
-package main;
+package launcher;
 
-public class Main {
- 
-//    public static void main(String[] args) {                                                                                       
+//import eng_graphics.IGameLogic;
+//import eng_graphics.Loop;
+//import main.Game;
+//
+///**
+// * Hello world!
+// *
+// */
+//public class Main 
+//{
+//    public static void main( String[] args )
+//    {
 //        try {
 //            boolean vSync = true;
 //            IGameLogic gameLogic = new Game();
@@ -10,12 +19,7 @@ public class Main {
 //            loop.run();
 //        } catch (Exception excp) {
 //            excp.printStackTrace();
-//            System.exit(-1);
+//            System.exit(-1);  
 //        }
 //    }
-    
-
-	// ctrl f11
-	// shift alt right left / up down
-	// ctrl d delete line
-} 
+//}

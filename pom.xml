@@ -86,5 +86,6 @@
   	<module>game</module>
     <module>ldk.map_editor</module>
     <module>ldk.hub</module>
+    <module>launcher</module>
   </modules>
 </project>

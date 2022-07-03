@@ -1,7 +1,6 @@
-package main;
+package eng_handling_control;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import org.joml.Vector2f;
 
@@ -10,12 +9,11 @@ import eng_game_objects.IObject;
 import eng_game_objects.Model;
 import eng_game_objects.Trigger;
 import eng_game_objects.comparators.ObjectComparatorDistance;
-import eng_game_objects.comparators.ObjectComparatorZ;
 import eng_graphics.camera.Camera;
 import eng_parameters.parameters_groups.ObjectsParameters;
 import eng_scene.Scene;
 
-class CalculationEntitiesForHandlingByDistance implements ICalculationEntitiesForHandling {
+public class CalculationEntitiesForHandlingByDistance implements ICalculationEntitiesForHandling {
 
 	private final float HANDLING_DISTANCE;
 
@@ -31,7 +29,7 @@ class CalculationEntitiesForHandlingByDistance implements ICalculationEntitiesFo
 	private ArrayList<Model> sceneDynamicModels;
 	private ArrayList<Trigger> sceneTriggers;
 
-	protected CalculationEntitiesForHandlingByDistance(Scene scene, Camera camera, float HANDLING_DISTANCE) {
+	public CalculationEntitiesForHandlingByDistance(Scene scene, Camera camera, float HANDLING_DISTANCE) {
 		this.HANDLING_DISTANCE = HANDLING_DISTANCE;
 		this.scene = scene;
 		this.camera = camera;

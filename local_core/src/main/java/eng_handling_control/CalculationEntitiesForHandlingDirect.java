@@ -1,4 +1,4 @@
-package main;
+package eng_handling_control;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import eng_game_objects.Entity;
 import eng_game_objects.IObject;
 import eng_scene.Scene;
 
-class CalculationEntitiesForHandlingDirect implements ICalculationEntitiesForHandling{
+public class CalculationEntitiesForHandlingDirect implements ICalculationEntitiesForHandling{
 
 	private Scene scene;
 
@@ -16,7 +16,7 @@ class CalculationEntitiesForHandlingDirect implements ICalculationEntitiesForHan
 	private ArrayList<IObject> physicsHandlingEntities;
 	private ArrayList<IObject> scriptHandlingEntities;
 
-	protected CalculationEntitiesForHandlingDirect(Scene scene) {
+	public CalculationEntitiesForHandlingDirect(Scene scene) {
 		this.scene = scene;
 	}
 	

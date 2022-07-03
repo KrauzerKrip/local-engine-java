@@ -1,5 +1,6 @@
 package eng_procedures.parameters_init;
 
+import eng_file_io.IResources;
 import eng_parameters.ParametersFileReader;
 import eng_parameters.parameters_groups.SceneParameters;
 
@@ -11,8 +12,8 @@ public class SceneParametersInit {
 	private ParametersInit parametersInit = new ParametersInit();
 	private ParametersFileReader parametersFileReader;
 	
-	public SceneParametersInit() {
-		this.parametersFileReader = new ParametersFileReader(SCENE_PARAMETERS_FILE_NAME);
+	public SceneParametersInit(IResources iResources) {
+		this.parametersFileReader = new ParametersFileReader(SCENE_PARAMETERS_FILE_NAME, iResources);
 	}
 	
 	public SceneParametersInit(ParametersFileReader parametersFileReader) {

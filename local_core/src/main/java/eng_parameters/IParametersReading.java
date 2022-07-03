@@ -1,5 +1,6 @@
 package eng_parameters;
 
+import java.io.InputStream;
 import java.util.HashMap;
 
 /**
@@ -14,5 +15,5 @@ public interface IParametersReading {
 	 *         Object[] is {value of parameter, is confirmation needed, comment}.
 	 * @throws Exception
 	 */
-	HashMap<String, Object[]> getParametersRawDataMapByStrategy(String fileName) throws Exception;
+	HashMap<String, Object[]> getParametersRawDataMapByStrategy(InputStream fileStream) throws Exception;
 }

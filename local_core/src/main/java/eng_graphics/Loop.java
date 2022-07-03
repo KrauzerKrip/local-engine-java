@@ -1,5 +1,6 @@
 package eng_graphics;
 
+import eng_file_io.IResources;
 import eng_procedures.parameters_init.ConsoleParametersParametersInit;
 import eng_procedures.parameters_init.GraphicsParametersInit;
 import eng_procedures.parameters_init.ObjectsParametersInit;
@@ -25,16 +26,19 @@ public class Loop implements Runnable {
     
     private float elapsedTime;
     
+    private IResources iResources;
+    
     // TODO Move Loop class in another place (because it isn`t only for graphics).
-    private Loop(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic) throws Exception {
+    private Loop(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic, IResources iResources) throws Exception {
         window = new Window(windowTitle, width, height, vSync);
         this.gameLogic = gameLogic;
         timecontroller = new TimeController();
+        this.iResources = iResources;
     }
     
-    public static Loop createInstance(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic) throws Exception {
+    public static Loop createInstance(String windowTitle, int width, int height, boolean vSync, IGameLogic gameLogic, IResources iResources) throws Exception {
     	if (instance == null) {
-    		instance = new Loop(windowTitle, width, height, vSync, gameLogic);
+    		instance = new Loop(windowTitle, width, height, vSync, gameLogic, iResources);
     		return instance;
     	}
     	else {
@@ -56,7 +60,7 @@ public class Loop implements Runnable {
         try {
             init();
             gameLoop();
-        } catch (Exception excp) {
+        } catch (Exception excp) {  
             excp.printStackTrace();
         } finally {
         	cleanup();
@@ -67,10 +71,10 @@ public class Loop implements Runnable {
         window.init();
         timecontroller.init();
         
-		new SceneParametersInit().initParameters();
-		new ObjectsParametersInit().initParameters();
-		new GraphicsParametersInit().initParameters();
-		new ConsoleParametersParametersInit().initParameters();
+		new SceneParametersInit(iResources).initParameters(); // вот сюда вот тянуть
+		new ObjectsParametersInit(iResources).initParameters();
+		new GraphicsParametersInit(iResources).initParameters();
+		new ConsoleParametersParametersInit(iResources).initParameters();
 		
         gameLogic.init(window);
     }

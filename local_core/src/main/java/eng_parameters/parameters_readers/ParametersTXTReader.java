@@ -1,5 +1,6 @@
 package eng_parameters.parameters_readers;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,7 +8,6 @@ import java.util.List;
 
 import eng_file_io.FileReadingByLines;
 import eng_parameters.IParametersReading;
-import game.Resource;
 
 public class ParametersTXTReader implements IParametersReading {
 
@@ -17,11 +17,11 @@ public class ParametersTXTReader implements IParametersReading {
 	 * @param filePath - name with format, e.g "example.txt".
 	 */
 	@Override
-	public HashMap<String, Object[]> getParametersRawDataMapByStrategy(String fileName) throws Exception {
+	public HashMap<String, Object[]> getParametersRawDataMapByStrategy(InputStream fileStream) throws Exception {
 
 		// Format of line : "TYPE CONFIRMATION=TRUE/FALSE name=value //Comment.".
 
-		ArrayList<String> lines = new FileReadingByLines(Resource.getParametersFile(fileName)).readFile();
+		ArrayList<String> lines = new FileReadingByLines(fileStream).readFile();
 
 		for (String line : lines) {
 			String[] tokensTypeConfirmationParameterComment = line.split(" "); // {"TYPE", "CONFRIMATION=TRUE/FALSE",
