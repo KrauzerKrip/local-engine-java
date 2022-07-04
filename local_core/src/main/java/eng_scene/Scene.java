@@ -10,6 +10,7 @@ import org.joml.Vector3f;
 import org.xml.sax.SAXException;
 
 import eng_console.Console;
+import eng_file_io.IResources;
 import eng_game_objects.Entity;
 import eng_game_objects.Model;
 import eng_game_objects.Object;
@@ -28,7 +29,6 @@ import eng_scene.raw_data.SceneEntityRawData;
 import eng_scene.raw_data.SceneModelRawData;
 import eng_scene.raw_data.SceneTriggerRawData;
 import eng_script.Script;
-import game.Resource;
 
 /**
  * Class of a scene. It has methods to interact with a scene. Do not forget to
@@ -37,6 +37,7 @@ import game.Resource;
 public class Scene {
 
 	private String name;
+	private IResources resources;
 
 	private ArrayList<Entity> sceneEntities = new ArrayList<Entity>();
 	private ArrayList<Entity> sceneStaticEntities = new ArrayList<Entity>();
@@ -55,15 +56,16 @@ public class Scene {
 	/**
 	 * @param name - name of a scene as in files.
 	 */
-	public Scene(String name) {
+	public Scene(String name, IResources resources) {
 		this.name = name;
+		this.resources = resources;
 	}
 
 	/**
 	 * Loads scene. To get list of objects please use getters.
 	 */
 	public void loadScene() throws Exception {
-		ArrayList<ArrayList<SceneEntityRawData>> listWithLists = SceneSAX.parseXML(name);
+		ArrayList<ArrayList<SceneEntityRawData>> listWithLists = SceneSAX.parseXML(name, resources);
 
 		ArrayList<SceneEntityRawData> staticModelsData = listWithLists.get(0);
 		ArrayList<SceneEntityRawData> dynamicModelsData = listWithLists.get(1);
@@ -156,7 +158,7 @@ public class Scene {
 
 		if (sceneEntityData.type == SceneSAX.SubMode.MODEL) {
 			sceneModelData = (SceneModelRawData) sceneEntityData;
-			ObjectRawData objectRawData = ObjectSAX.getInfo(sceneModelData.object);
+			ObjectRawData objectRawData = ObjectSAX.getInfo(sceneModelData.object, resources);
 			entity = createEntityInstance(sceneModelData, objectRawData);
 		} else if (sceneEntityData.type == SceneSAX.SubMode.DEFAULT_ENTITY) {
 			sceneStandardEntityData = (SceneDefaultEntityRawData) sceneEntityData;
@@ -186,7 +188,7 @@ public class Scene {
 		BufferedImage textureImage = null;
 		
 		try {
-			textureImage = Resource.getObject(objectRawData.id).textureImage();
+			textureImage = resources.getObject(objectRawData.id).textureImage();
 		} catch (Exception e) {
 			textureImage = null;
 			e.printStackTrace();

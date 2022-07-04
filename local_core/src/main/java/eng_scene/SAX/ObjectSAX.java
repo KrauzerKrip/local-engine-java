@@ -11,8 +11,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import eng_console.Console;
+import eng_file_io.IResources;
 import eng_scene.raw_data.ObjectRawData;
-import game.ResourceUsual;
 
 /**
  * It is needed to parse XML objects files.
@@ -25,7 +25,7 @@ public class ObjectSAX {
 	 * @param objectName - name of an object as in files.
 	 * @return instance ObjectRawData with data about an object.
 	 */
-	public static ObjectRawData getInfo(String objectName)
+	public static ObjectRawData getInfo(String objectName, IResources resources)
 			throws ParserConfigurationException, SAXException, IOException {
 
 		SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -33,14 +33,12 @@ public class ObjectSAX {
 
 		XMLHandler handler = new XMLHandler();
 		
-		ResourceUsual resourceUsual = new ResourceUsual();
-		
 		try {
 			Console.write(objectName);
-			parser.parse(resourceUsual.getObject(objectName).infoStream(), handler);
+			parser.parse(resources.getObject(objectName).infoStream(), handler);
 		} catch (IOException | IllegalArgumentException e) {
 			Console.warn("ObjectSAX: can`t load object '" + objectName + "' because of " + e.toString());
-			parser.parse(resourceUsual.getObject("eng_object_not_found").infoStream(), handler); // if object not found
+			parser.parse(resources.getObject("eng_object_not_found").infoStream(), handler); // if object not found
 		}
 
 		return entityRawData;

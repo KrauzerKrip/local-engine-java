@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.joml.Vector3f;
 
+import eng_file_io.IResources;
 import eng_game_objects.Entity;
 import eng_game_objects.IObject;
 import eng_graphics.IGameLogic;
@@ -33,6 +34,8 @@ public class Game implements IGameLogic {
 	private ArrayList<IObject> dynamicEntities;
 
 	private Scene scene;
+	
+	private IResources resources;
 
 	private int inputVertical;
 	private int inputHorizontal; 
@@ -60,6 +63,7 @@ public class Game implements IGameLogic {
 	
 	public Game() throws Exception {
 		render = new Render(camera);
+		resources = new Resource();
 	}
 
 	@Override
@@ -82,6 +86,7 @@ public class Game implements IGameLogic {
 		 * and add to the array.
 		 */
 		
+		SceneControlling.setResourcesClass(resources);
 		scene = SceneControlling.loadScene("ExampleScene");
 		
 		renderingObjects1 =  new ArrayList<IObject>(); //scene.getSceneObjects(); //

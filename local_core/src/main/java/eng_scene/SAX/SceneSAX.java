@@ -14,11 +14,11 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import eng_console.Console;
+import eng_file_io.IResources;
 import eng_scene.raw_data.SceneDefaultEntityRawData;
 import eng_scene.raw_data.SceneEntityRawData;
 import eng_scene.raw_data.SceneModelRawData;
 import eng_scene.raw_data.SceneTriggerRawData;
-import game.Resource;
 
 /**
  * It is needed to parse XML scenes files.
@@ -44,7 +44,7 @@ public class SceneSAX {
 	 * 
 	 * Element in list has: Child of SceneEntityRawData instance.
 	 */
-	public static ArrayList<ArrayList<SceneEntityRawData>> parseXML(String sceneName)
+	public static ArrayList<ArrayList<SceneEntityRawData>> parseXML(String sceneName, IResources resources)
 			throws ParserConfigurationException, SAXException, IOException, URISyntaxException {
 
 		SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -53,7 +53,7 @@ public class SceneSAX {
 		XMLHandler handler = new XMLHandler();
 		
 		try {
-			parser.parse(Resource.getSceneFile(sceneName), handler);
+			parser.parse(resources.getSceneFile(sceneName), handler);
 		} catch (Exception e) {
 			Console.warn("SceneSAX: can`t parse scene file " + sceneName);
 			e.printStackTrace();
