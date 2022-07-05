@@ -5,18 +5,18 @@ import java.awt.image.BufferedImage;
 import org.joml.Vector3f;
 
 import eng_console.Console;
+import eng_file_io.IResources;
 import eng_graphics.Sprite;
 import eng_graphics.Texture;
 import eng_graphics.TextureInfo;
 import eng_physics.Collider;
 import eng_physics.Physics;
-import game.Resource;
 
 public class Trigger extends Entity implements IGraphicObject {
 	
 	Sprite sprite;
 	
-	public Trigger(float height, float width, boolean preloadSprite) throws Exception {
+	public Trigger(float height, float width, boolean preloadSprite, IResources resources) throws Exception {
 		Physics physics = new Physics(new Collider(height, width));
 		super.setPhysics(physics);
 		
@@ -27,14 +27,14 @@ public class Trigger extends Entity implements IGraphicObject {
 			BufferedImage textureImage = null;
 			
 			try {
-				textureImage = Resource.getObject("eng_trigger").textureImage();
+				textureImage = resources.getObject("eng_trigger").textureImage();
 			} catch (Exception e) {
 				textureImage = null;
 				e.printStackTrace();
 				Console.warn(e.toString());
 			}
 			
-			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(textureImage), textureInfo);
+			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(textureImage, resources), textureInfo);
 		} else {
 			sprite = null;
 		}

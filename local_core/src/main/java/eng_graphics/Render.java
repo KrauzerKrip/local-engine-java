@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.joml.Matrix4f;
 
+import eng_file_io.IResources;
 import eng_game_objects.IGraphicObject;
 import eng_game_objects.IObject;
 import eng_graphics.camera.Camera;
@@ -18,21 +19,23 @@ public class Render {
     private ShaderHandler shaderHandler;
     private Transformation transformation;
     private Camera camera;
+    private IResources resources;
     
     private static final float GL_FOV = (float) Math.toRadians(60.0f); 
     private static final float Z_NEAR = 0.01f;
     private static final float Z_FAR = 1000.0f;
     
     
-    public Render(Camera camera) {
+    public Render(Camera camera, IResources resources) {
     	transformation = new Transformation();
     	this.camera = camera;
+    	this.resources = resources;
     }
 
     public void init(Window window) throws Exception {
         shaderHandler = new ShaderHandler();
-        Shader vertexShader = new Shader("vertexShader.vs");
-        Shader fragmentShader = new Shader("fragmentShader.fs");
+        Shader vertexShader = new Shader("vertexShader.vs", resources);
+        Shader fragmentShader = new Shader("fragmentShader.fs", resources);
         shaderHandler.createVertexShader(vertexShader.load());
         shaderHandler.createFragmentShader(fragmentShader.load());
         shaderHandler.shaderLink();

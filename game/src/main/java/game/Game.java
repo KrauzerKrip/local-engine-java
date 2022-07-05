@@ -62,8 +62,8 @@ public class Game implements IGameLogic {
 	
 	
 	public Game() throws Exception {
-		render = new Render(camera);
 		resources = new Resource();
+		render = new Render(camera, resources);
 	}
 
 	@Override

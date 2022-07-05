@@ -4,18 +4,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-import game.Resource;
+import eng_file_io.IResources;
 
 public class Shader {
 	private final String fileName;
+	private IResources resources;
 	private String shaderString;
 	
-	public Shader(String fileName) {
+	public Shader(String fileName, IResources resources) {
 		this.fileName = fileName;
+		this.resources = resources;
 	}
 	
 	public String load() throws NullPointerException, IOException {
-	    try (InputStream in = Resource.getVertexShaderStream(fileName);
+	    try (InputStream in = resources.getVertexShaderStream(fileName);
 	            Scanner scanner = new Scanner(in, java.nio.charset.StandardCharsets.UTF_8.name())) {
 	    	shaderString = scanner.useDelimiter("\\A").next();
 	    }
@@ -25,4 +27,4 @@ public class Shader {
 	public String getShader() {
 		return shaderString;
 	}
-}
+}  

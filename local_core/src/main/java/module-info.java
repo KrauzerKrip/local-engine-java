@@ -17,7 +17,7 @@ module local_core {
 	exports eng_parameters;
 	exports eng_parameters.parameters_groups;
 	exports eng_physics;
-	exports eng_procedures;
+	exports eng_procedures.parameters_init;
 	exports eng_scene;
 	exports eng_script;
 	exports eng_stuff;

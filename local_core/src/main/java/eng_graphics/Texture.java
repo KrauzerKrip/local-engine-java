@@ -27,15 +27,15 @@ import org.lwjgl.system.MemoryStack;
 import eng_console.Console;
 import eng_exceptions.NotMainThreadException;
 import eng_exceptions.TextureNotFoundException;
-import game.Resource;
+import eng_file_io.IResources;
 
 public class Texture {
 	
     private final int id;
     private static final int BYTES_PER_PIXEL = 4;
 
-    public Texture(BufferedImage image) throws Exception {
-        this(loadTexture(image));
+    public Texture(BufferedImage image, IResources resources) throws Exception {
+        this(loadTexture(image, resources));
     }
 
     public Texture(int id) {
@@ -50,7 +50,7 @@ public class Texture {
         return id;
     }
 	
-	private static int loadTexture(BufferedImage image) throws TextureNotFoundException, NotMainThreadException, NullPointerException, URISyntaxException, IOException {
+	private static int loadTexture(BufferedImage image, IResources resources) throws TextureNotFoundException, NotMainThreadException, NullPointerException, URISyntaxException, IOException {
 		
 		if (!("Thread[main".equals(Thread.currentThread().toString().split(",")[0]))) {
 			throw new NotMainThreadException(Texture.class.getName(), "can`t load texture from the thread that isn`t the 'main' thread.");
@@ -80,7 +80,7 @@ public class Texture {
 				
 				Console.warn("Texture: can`t load texture"); // TODO Error texture info printing.
 				
-				image = Resource.getObject("eng_texture_not_found").textureImage();
+				image = resources.getObject("eng_texture_not_found").textureImage();
 				
 		        width = image.getWidth();
 		        height = image.getHeight();

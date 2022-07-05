@@ -195,7 +195,7 @@ public class Scene {
 			Console.warn(e.toString());
 		}
 		
-		Texture texture = new Texture(textureImage);
+		Texture texture = new Texture(textureImage, resources);
 		Vector3f defaultPosition = sceneEntityData.defaultPos;
 		Vector3f defaultRotation = sceneEntityData.defaultRot;
 		String scriptName = sceneEntityData.scriptName;
@@ -257,7 +257,7 @@ public class Scene {
 		float colliderHeight = sceneEntityData.colliderHeight;
 		float colliderWidth = sceneEntityData.colliderWidth;
 
-		Entity entity = new Trigger(colliderHeight, colliderWidth, (boolean) GraphicsParameters.getInstance().getParameterValue("preloadTechSprites"));
+		Entity entity = new Trigger(colliderHeight, colliderWidth, (boolean) GraphicsParameters.getInstance().getParameterValue("preloadTechSprites"), resources);
 		entity.setScale(1f);
 
 		setAttributes(entity, id, scriptName, isEternalScript, colliderHeight, colliderWidth, defaultPosition, defaultRotation);

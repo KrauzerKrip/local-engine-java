@@ -2,14 +2,7 @@ package eng_handling_control;
 
 import java.util.ArrayList;
 
-import org.joml.Vector2f;
-
-import eng_game_objects.Entity;
 import eng_game_objects.IObject;
-import eng_game_objects.Object;
-import eng_graphics.Sprite;
-import eng_graphics.camera.Camera;
-import eng_scene.Scene;
 
 public class SceneEntitiesHandlingController {
 

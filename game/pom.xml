@@ -9,6 +9,8 @@
   <name>Game</name>
   <description>All stuff for the game.</description>
   
+  <packaging>jar</packaging>
+  
    <dependencies>
    	<dependency>
     	<groupId>local_engine</groupId>
@@ -55,13 +57,6 @@
 			</plugin>
         
         <!-- https://stackoverflow.com/questions/7758099/how-can-i-use-maven-to-build-a-jar-with-required-libraries-in-a-sub-folder-like-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <release>17</release>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
