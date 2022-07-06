@@ -3,7 +3,8 @@ module ldk.map_editor {
     requires javafx.fxml;
 	requires javafx.graphics;
 	requires java.xml;
-	//requires local_core;
+	requires local_core;
+	requires org.joml;
 	
     opens ldk.map_editor.view.controllers to javafx.fxml;
     opens ldk.map_editor to javafx.fxml;
