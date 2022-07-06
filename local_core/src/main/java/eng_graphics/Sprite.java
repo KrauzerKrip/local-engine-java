@@ -40,6 +40,8 @@ public class Sprite {
 	private final int textureVboId;
 
 	private final Texture texture;
+	
+	private final TextureInfo textureInfo;
 
 	private float spriteHeight;
 
@@ -50,6 +52,8 @@ public class Sprite {
 		FloatBuffer posBuffer = null;
 		FloatBuffer textureCoordsBuffer = null;
 		IntBuffer indicesBuffer = null;
+		
+		this.textureInfo = textureInfo;
 		
 		float textureX = 0;
 		float textureY = 0;
@@ -194,16 +198,18 @@ public class Sprite {
 		glDeleteVertexArrays(vaoId);
 	}
 
-	/**
-	 * @return the spriteHeight
-	 */
+	public Texture getTexture() {
+		return texture;
+	}
+
+	public TextureInfo getTextureInfo() {
+		return textureInfo;
+	}
+
 	public float getHeight() {
 		return spriteHeight;
 	}
 
-	/**
-	 * @return the spriteWidth
-	 */
 	public float getWidth() {
 		return spriteWidth;
 	}
