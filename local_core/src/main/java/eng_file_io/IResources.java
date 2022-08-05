@@ -15,4 +15,6 @@ public interface IResources {
 	public InputStream getSceneFile(String sceneName) throws NullPointerException;
 	
 	public InputStream getVertexShaderStream(String shaderFileName) throws NullPointerException;
+	
+	public InputStream getContentFileStream(String contentFileName) throws NullPointerException;
 }

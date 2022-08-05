@@ -35,7 +35,6 @@ public class Resource implements IResources {
 	
 	public InputStream getParametersFile(String parametersName) throws NullPointerException {
 		return Resource.class.getResourceAsStream("parameters/" + parametersName);
-		
 	}
 	
 	public InputStream getSceneFile(String sceneName) throws NullPointerException {
@@ -46,4 +45,7 @@ public class Resource implements IResources {
 		return Resource.class.getResourceAsStream("shaders/" + shaderFileName);
 	}
 	
+	public InputStream getContentFileStream(String contentFileName) throws NullPointerException {
+		return Resource.class.getResourceAsStream("content/" + contentFileName);
+	}
 }
