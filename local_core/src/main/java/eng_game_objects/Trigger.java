@@ -6,9 +6,10 @@ import org.joml.Vector3f;
 
 import eng_console.Console;
 import eng_file_io.IResources;
-import eng_graphics.Sprite;
 import eng_graphics.Texture;
 import eng_graphics.TextureInfo;
+import eng_graphics.sprites.ObjectSprite;
+import eng_graphics.sprites.Sprite;
 import eng_physics.Collider;
 import eng_physics.Physics;
 
@@ -34,7 +35,8 @@ public class Trigger extends Entity implements IGraphicObject {
 				Console.warn(e.toString());
 			}
 			
-			sprite = new Sprite(super.getHeight(), super.getWidth(), new Texture(textureImage, resources), textureInfo);
+			sprite = new ObjectSprite(super.getHeight(), super.getWidth(), new Texture(textureImage, resources), textureInfo);
+			sprite.load();
 		} else {
 			sprite = null;
 		}

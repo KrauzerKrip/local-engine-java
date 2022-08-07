@@ -2,7 +2,7 @@ package eng_game_objects;
 
 import org.joml.Vector3f;
 
-import eng_graphics.Sprite;
+import eng_graphics.sprites.Sprite;
 
 public class Model extends Entity implements IGraphicObject {
 	

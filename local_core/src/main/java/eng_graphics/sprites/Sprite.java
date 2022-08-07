@@ -1,4 +1,4 @@
-package eng_graphics;
+package eng_graphics.sprites;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
@@ -27,78 +27,54 @@ import java.nio.IntBuffer;
 
 import org.lwjgl.system.MemoryUtil;
 
-public class Sprite {
+import eng_graphics.Texture;
 
-	private final int vaoId;
+public abstract class Sprite {
 
-	private final int posVboId;
-
-	private final int idxVboId;
-
-	private final int vertexCount;
-
-	private final int textureVboId;
-
-	private final Texture texture;
+	private int vaoId;
+	private int posVboId;
+	private int idxVboId;
+	private int vertexCount;
+	private int textureVboId;
 	
-	private final TextureInfo textureInfo;
-
+	private Texture texture;
 	private float spriteHeight;
-
 	private float spriteWidth;
-
-	public Sprite(float spriteHeight, float spriteWidth, Texture texture, TextureInfo textureInfo) throws Exception {
-
+	
+	/**
+	 * @apiNote PLEASE DO NOT FORGET TO LOAD IT!!!
+	 * 
+	 * @param spriteHeight
+	 * @param spriteWidth
+	 * @param texture
+	 * @throws Exception
+	 */
+	public Sprite(float spriteHeight, float spriteWidth, Texture texture) throws Exception {
+		this.texture = texture;
+		this.spriteHeight = spriteHeight;
+		this.spriteWidth = spriteWidth;
+	}
+	
+	protected abstract float[] getTexturePositions();
+	protected abstract float[] getTextureCoords() throws Exception;
+	protected abstract int[] getTextureIndices();
+	
+	/**
+	 * @apiNote PLEASE DO NOT FORGET ABOUT IT!!!
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void load() throws Exception {
 		FloatBuffer posBuffer = null;
 		FloatBuffer textureCoordsBuffer = null;
 		IntBuffer indicesBuffer = null;
 		
-		this.textureInfo = textureInfo;
+		float[] positions = getTexturePositions();
+		float[] textureCoords = getTextureCoords();
+		int[] indices = getTextureIndices();
 		
-		float textureX = 0;
-		float textureY = 0;
-		
-		this.spriteHeight = spriteHeight;
-		this.spriteWidth = spriteWidth;
-		
-		if (textureInfo.getMode() == TextureInfo.Mode.RELATIVE) {
-			
-			textureX = textureInfo.getRatioWidthTextureSprite();
-			textureY = textureInfo.getRatioHeightTextureSprite();
-			
-		} 
-		else if (textureInfo.getMode() == TextureInfo.Mode.CONSTANT) {
-		
-			textureX = this.spriteWidth / textureInfo.getTextureWidth();
-			textureY = this.spriteHeight / textureInfo.getTextureHeight();
-			
-		} 
-		else {
-			throw new Exception("Sprite: mode " + textureInfo.getMode() + " doesn`t exist.");
-		}
-
-		float[] positions = new float[] {
-				// VO
-				-this.spriteWidth / 2, this.spriteHeight / 2, 0.0f,
-				// V1
-				-this.spriteWidth / 2, -this.spriteHeight / 2, 0.0f,
-				// V2
-				this.spriteWidth / 2, -this.spriteHeight / 2, 0.0f,
-				// V3
-				this.spriteWidth / 2, this.spriteHeight / 2, 0.0f, };
-
-		float[] textureCoords = new float[] { 
-				0.0f, 0.0f,
-				0.0f, textureY, 
-				textureX, textureY, 
-				textureX, 0.0f, };
-
-		int[] indices = new int[] {
-				// Front face
-				0, 1, 3, 3, 1, 2, };
-
 		try {
-			this.texture = texture;
 			vertexCount = indices.length;
 
 			vaoId = glGenVertexArrays();
@@ -200,10 +176,6 @@ public class Sprite {
 
 	public Texture getTexture() {
 		return texture;
-	}
-
-	public TextureInfo getTextureInfo() {
-		return textureInfo;
 	}
 
 	public float getHeight() {

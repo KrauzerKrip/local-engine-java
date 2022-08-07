@@ -15,9 +15,10 @@ import eng_game_objects.Entity;
 import eng_game_objects.Model;
 import eng_game_objects.Object;
 import eng_game_objects.Trigger;
-import eng_graphics.Sprite;
 import eng_graphics.Texture;
 import eng_graphics.TextureInfo;
+import eng_graphics.sprites.ObjectSprite;
+import eng_graphics.sprites.Sprite;
 import eng_parameters.parameters_groups.GraphicsParameters;
 import eng_physics.Collider;
 import eng_physics.Physics;
@@ -206,7 +207,8 @@ public class Scene {
 		TextureInfo textureInfo = new TextureInfo();
 		textureInfo.setTextureInfoRelative(1f, 1f);
 
-		Sprite sprite = new Sprite(spriteHeight, spriteWidth, texture, textureInfo);
+		Sprite sprite = new ObjectSprite(spriteHeight, spriteWidth, texture, textureInfo);
+		sprite.load();
 		Entity entity = new Model(sprite);
 		
 		entity.setScale(1f);
