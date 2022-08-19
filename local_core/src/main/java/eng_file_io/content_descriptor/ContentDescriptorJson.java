@@ -15,10 +15,14 @@ public class ContentDescriptorJson implements IContentDescriptor, Serializable {
 	
 	private static final String ATLAS_FILE_FORMAT = ".png";
 	
-	private HashMap<String, float[]> texturesCoordsMap;
+	private String[] atlasNames;
+	private HashMap<String, float[]> texturesCoordsMap; // atlas = {0.1, 0.2, 0.3, 0.4}
 	
-	public ContentDescriptorJson() {
-		this.texturesCoordsMap = new HashMap<>();
+	public ContentDescriptorJson() {}
+	
+	public ContentDescriptorJson(String[] atlasNames, HashMap<String, float[]> texturesCoordsMap) {
+		this.atlasNames = atlasNames;
+		this.texturesCoordsMap = texturesCoordsMap;
 	}
 	
 	@Override
@@ -38,5 +42,10 @@ public class ContentDescriptorJson implements IContentDescriptor, Serializable {
 	public String getTextureFileName(String textureName) throws TextureNotFoundException {
 		// TODO Auto-generated method stub
 		return "atlas" + ATLAS_FILE_FORMAT;
+	}
+	
+	@Override
+	public String[] getAtlasNames() {
+		return atlasNames;
 	}
 }
