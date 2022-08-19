@@ -7,7 +7,7 @@ public class ObjectSprite extends Sprite{
 	
 	TextureInfo textureInfo;
 	
-	public ObjectSprite(float spriteHeight, float spriteWidth, Texture texture, TextureInfo textureInfo) throws Exception {
+	public ObjectSprite(float spriteHeight, float spriteWidth, Texture texture, TextureInfo textureInfo) {
 		super(spriteHeight, spriteWidth, texture);
 		
 		this.textureInfo = textureInfo;

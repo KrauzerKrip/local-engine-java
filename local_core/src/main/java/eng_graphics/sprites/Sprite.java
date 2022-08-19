@@ -49,8 +49,17 @@ public abstract class Sprite {
 	 * @param texture
 	 * @throws Exception
 	 */
-	public Sprite(float spriteHeight, float spriteWidth, Texture texture) throws Exception {
-		this.texture = texture;
+	public Sprite(float spriteHeight, float spriteWidth, Texture texture) {
+		
+		if (texture != null) {
+			this.texture = texture;
+		} else {
+			//this.texture = new Texture()
+			
+			throw new IllegalArgumentException("Sprite: given parameter texture is null.");
+		}
+
+		
 		this.spriteHeight = spriteHeight;
 		this.spriteWidth = spriteWidth;
 	}
